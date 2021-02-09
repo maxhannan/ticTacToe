@@ -132,7 +132,6 @@ const computerFactory = (name,marker)=>{
         }
         return validMoves;
     }
-    
     const makeMove = function(){
         posMoves = getValidMoves();
         let move;
@@ -140,21 +139,18 @@ const computerFactory = (name,marker)=>{
         posMoves.forEach(choice =>{
             let state = GameBoard.getGameState();
             state[choice]=marker;
-                // console.log({move,state});
                 if(GameBoard.checkWin(state)){
-                    console.log(choice,'WIN');
                     move =  choice;
                     winningMove = true;
                 }
-                
             })
             if(winningMove){
                 return move;
             }
+            // ELSE CHOOSE RANDOM MOVE
             console.log('nowins')
             let moveChoice = getRandomArbitrary(0,posMoves.length);
             move = posMoves[moveChoice];
-            // console.log({moveChoice,move})
             return move;
         
     }
@@ -208,15 +204,12 @@ const gameMaster = (()=>{
                 displayControl.updateDisplay('Draw',true)
                 return;
             }
-            
             currentPlayer = currentPlayer === player1 ? player2:player1;
-    
             displayControl.updateDisplay(currentPlayer.getName());
             if(currentPlayer.getComp()){
                 await new Promise(r => setTimeout(r, 500));
                 playRound(currentPlayer.makeMove())
             }
-            
         } 
     }  
     
@@ -225,7 +218,8 @@ const gameMaster = (()=>{
         init,
         reset
     }
-})()
+})();
+
 const formControl = (()=>{
     const startBtn = document.querySelector('#start');
     const inputs = document.querySelectorAll('.inputs')
@@ -242,7 +236,6 @@ const formControl = (()=>{
         }
         let player1 = playerFactory(p1, p1M.toUpperCase());
         let player2;
-
         if(isComp){
             player2 = computerFactory(p2, p2M.toUpperCase());
         }else{

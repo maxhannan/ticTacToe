@@ -12,17 +12,18 @@
     <body>
         <div class = 'menu'>
             <label for="player1">Player 1</label>
-            <input class = 'inputs' data-ix = '0' id = 'player1' type = 'text'/>
+            <input class = 'inputs' data-ix = '0' id = 'player1' type = 'text' placeholder="Name"/>
             <label for="player1mark">Marker</label>
-            <input class = 'inputs' data-ix = '1' id = 'player1mark' type = 'text'/>
+            <input class = 'inputs' data-ix = '1' id = 'player1mark' type = 'text' maxlength="1" placeholder="letter"/>
             <label for="player2">Player 2</label>
-            <input class = 'inputs' data-ix = '2' id = 'player2' type = 'text'/>
+            <input class = 'inputs' data-ix = '2' id = 'player2' type = 'text' placeholder="Name"/>
             <label for="player2mark">Marker</label>
-            <input class = 'inputs' data-ix = '3' id = 'player2mark' type = 'text'/>
+            <input class = 'inputs' data-ix = '3' id = 'player2mark' type = 'text' maxlength="1" placeholder="letter"/>
             <select class = 'inputs' id = 'aiSelect'>
-                <option value="">Player 2 Status</option>
-                <option value="comp">AI</option>
-                <option value = "human">Human</option>
+                <!-- <option value="">Player 2 Status</option> -->
+                <option value = "human">Player 2: Human</option>
+                <option value="comp">Player 2: AI </option>
+                
             </select>
            
             <button id = 'start'>start</button>
