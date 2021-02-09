@@ -10,8 +10,26 @@
         <script src="https://kit.fontawesome.com/e8ea7fc95b.js" crossorigin="anonymous"></script>
     </head>
     <body>
+        <div class = 'menu'>
+            <label for="player1">Player 1</label>
+            <input class = 'inputs' data-ix = '0' id = 'player1' type = 'text'/>
+            <label for="player1mark">Marker</label>
+            <input class = 'inputs' data-ix = '1' id = 'player1mark' type = 'text'/>
+            <label for="player2">Player 2</label>
+            <input class = 'inputs' data-ix = '2' id = 'player2' type = 'text'/>
+            <label for="player2mark">Marker</label>
+            <input class = 'inputs' data-ix = '3' id = 'player2mark' type = 'text'/>
+            <select class = 'inputs' id = 'aiSelect'>
+                <option value="">Player 2 Status</option>
+                <option value="comp">AI</option>
+                <option value = "human">Human</option>
+            </select>
+           
+            <button id = 'start'>start</button>
+        </div>
+        <div class = 'gameBoard'>
         <div class = 'display'>
-
+        
         </div>
         <div class="container">
             <div data-ix = '0' class = 'box'></div>
@@ -24,7 +42,11 @@
             <div data-ix = '7' class = 'box'></div>
             <div data-ix = '8' class = 'box'></div>
         </div>
-        <button id = 'reset'><i class="fas fa-redo-alt"></i></button>
+        <div class="btnContainer">
+        <button class = 'btns' onClick="window.location.reload();">New Game</button>
+        <button class = 'btns' id = 'reset'>New Round</button>
+    </div>
+    </div>
         <script src="assets/scripts.js" async defer></script>
     </body>
 </html>

@@ -9,6 +9,60 @@ body{
     font-family: 'Chivo';
     overflow: hidden;
 }
+.menu{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width:250px;
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+    transition: 1s all;
+    visibility: visible;
+    opacity: 1;
+    position: absolute;
+}
+input{
+    font-size: 20px;
+    border:1px solid black;
+    border-radius: 50px;
+    padding: 3%;
+    padding-left: 5%;
+    width:250px;
+}
+select{
+    width:250px;
+    margin-top:3%;
+    font-size: 20px;
+    background-color: transparent;
+    text-align: center;
+}
+#start{
+    margin-top: 10px;
+    font-size: 20px;
+    border:1px solid black;
+    background-color: transparent;
+    transition: .5s all;
+    border-radius: 50px;
+    width:100px;
+    height: 40px;
+}
+#start:hover{
+    background: lightgreen;
+}
+.gameBoard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Chivo';
+    overflow: hidden;
+    transition: 2s all;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+}
 .display{
     height:100px;
     width: 100%;
@@ -26,27 +80,40 @@ body{
 
 .box{
     background-color: white;
+
     margin:2px;
     transition: .2s all;
     font-size: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 .box:hover{
     background-color: lightgreen;
 }
+p{
+    animation: expand 2s;
+}
 
-#reset{
-    width: 50px;
+@keyframes expand{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity:1;
+    }
+}
+.btns{
+    width: 150px;
     height: 50px;
     border: 2px solid black;
     border-radius: 15px;
-    background-color: lightgray;
-    font-size: 30px;
+    background-color: transparent;
+    font-size: 20px;
     transition: .3s all;
     margin-top:2%;
 }
-#reset:hover{
+.btns:hover{
     background-color: lightcoral;
 }
