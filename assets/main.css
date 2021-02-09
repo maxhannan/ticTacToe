@@ -1,15 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Chivo:300,700|Playfair+Display:300,700i&display=swap');
+
 body{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    font-family: 'Chivo';
     overflow: hidden;
 }
 .display{
     height:100px;
-    width: 500px;
-    font-size: 80px;
+    width: 100%;
+    font-size: 60px;
     text-align: center;
 }
 .container{
@@ -31,5 +34,19 @@ body{
     justify-content: center;
 }
 .box:hover{
+    background-color: lightgreen;
+}
+
+#reset{
+    width: 50px;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 15px;
     background-color: lightgray;
+    font-size: 30px;
+    transition: .3s all;
+    margin-top:2%;
+}
+#reset:hover{
+    background-color: lightcoral;
 }

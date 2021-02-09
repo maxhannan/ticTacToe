@@ -1,10 +1,7 @@
-const container = document.querySelector('.container');
-const boxes = container.querySelectorAll('.box');
+const boxes = document.querySelectorAll('.box');
 
 const displayControl =(()=>{
     const display = document.querySelector('.display')
-    const init = function(){
-    }
     const render = function(gamestate){
         boxes.forEach((box,ix = 0) =>{
             box.innerText = gamestate[ix];
@@ -15,11 +12,8 @@ const displayControl =(()=>{
             display.innerText = marker;
             return;
         }
-        
         display.innerText = `${marker}'s turn`
     }
-    init();
-    
     return {
         render,
         updateDisplay
@@ -58,9 +52,9 @@ const GameBoard = (()=>{
     const checkWin = function(){
         let win = false;
         winningConditions.forEach(condition =>{
-            let ix1 = condition[0]
-            let ix2 = condition[1]
-            let ix3 = condition[2]
+            let ix1 = condition[0];
+            let ix2 = condition[1];
+            let ix3 = condition[2];
             let gs1 = gamestate[ix1];
             let gs2 = gamestate[ix2];
             let gs3 = gamestate[ix3];
@@ -72,7 +66,7 @@ const GameBoard = (()=>{
     }
     const checkDraw = function(){
         let draw = false;
-        let open =false;
+        let open = false;
         gamestate.forEach(box =>{
             if(box === ''){
                 open = true;
@@ -81,7 +75,7 @@ const GameBoard = (()=>{
         })
         if(!open && !checkWin()){
             draw = true;
-        }
+        } 
         return draw;
     }
     const clearGameState = function(){
@@ -126,9 +120,9 @@ const gameMaster = (()=>{
     const bindEvents = function(){
         boxes.forEach(box => {
             console.log(box);
-            box.addEventListener('click', handleClicks)
+            box.addEventListener('click', handleClicks);
         });
-        resetBtn.addEventListener('click', reset)
+        resetBtn.addEventListener('click', reset);
     };
 
     const handleClicks = function(e){
