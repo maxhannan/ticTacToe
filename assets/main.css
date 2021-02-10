@@ -73,7 +73,6 @@ select{
     display :flex;
     align-items: center;
     justify-content: center;
-    /* background-color: lightsteelblue; */
 }
 .container{
     height: 60vh;
