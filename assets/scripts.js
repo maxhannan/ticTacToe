@@ -236,6 +236,7 @@ const formControl = (()=>{
         }
         let player1 = playerFactory(p1, p1M.toUpperCase());
         let player2;
+
         if(isComp){
             player2 = computerFactory(p2, p2M.toUpperCase());
         }else{
