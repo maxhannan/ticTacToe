@@ -137,7 +137,8 @@ p{
     }
     .scoreboard{
         font-size: 18px;
-        width: 80vw;
+        width: 300px;
+        
     }
     .display{
         font-size: 30px;
