@@ -6,10 +6,11 @@ const viewController = (()=>{
     const scoreBoard = document.querySelector('.scoreboard')
     const game = document.querySelector('.gameBoard');
     const menu = document.querySelector('.menu');
+    // Running Scores
     let xWins = 0;
     let yWins = 0;
     let draws = 0;
-
+    // renders gamestate to boxes 
     const renderBoard = function(){
         let gamestate = GameBoard.getCurrentGameState()
         
@@ -21,18 +22,19 @@ const viewController = (()=>{
             }
         })
     };
-
-    const revealBoard = function(){
+    // hides form, shows game, renders board
+    const hideForm = function(){
         menu.style.visibility = 'hidden';
         menu.style.opacity = '0';
         game.style.visibility = 'visible';
         game.style.opacity = '1';
         renderBoard();
     };
-    
+    // controls game status display
     const controlGameDisplay = function(msg){
         display.innerText = msg;
     };
+    // updates running totals
     const updateScores = function(player,draw = false){
 
         if(draw){
@@ -45,15 +47,15 @@ const viewController = (()=>{
             yWins++
             return;
         }
-
     }
+    // controls ScoreBoard display
     const controlScoreBoard = function(p1,p2){
         scoreBoard.innerText = `${p1.getName()}: ${xWins}   ${p2.getName()}: ${yWins}   Draws: ${draws} `
     };
 
     return{
         renderBoard,
-        revealBoard,
+        hideForm,
         controlGameDisplay ,
         updateScores,
         controlScoreBoard   
@@ -229,26 +231,26 @@ const gameMaster = (()=>{
     let player2;
     let currentPlayer;
     let gameOn;
+    let vc = viewController
     const resetBtn = document.querySelector('#reset')
     const computerMove = async function (){
         await new Promise(r => setTimeout(r, 600));
         let compMove = currentPlayer.makeSmartMove();
         playRound(compMove.index);
-        viewController.renderBoard();
+        vc.renderBoard();
 
     }
     const init =  function(p1,p2){
         player1 = p1
         player2 = p2
         currentPlayer = player1;
-        viewController.controlGameDisplay(`${currentPlayer.getName()}'s turn.`)
-        viewController.controlScoreBoard(player1,player2)
+        vc.controlGameDisplay(`${currentPlayer.getName()}'s turn.`)
+        vc.controlScoreBoard(player1,player2)
         gameOn = true;
         bindEvents();
         if(currentPlayer.isComputer()){
             computerMove();
         }
-        
     }
 
     const bindEvents = function(){
@@ -260,10 +262,10 @@ const gameMaster = (()=>{
 
     const reset =  function(){
         GameBoard.resetGameState();
-        viewController.renderBoard();
+        vc.renderBoard();
         gameOn = true;
         currentPlayer = player1
-        viewController.controlGameDisplay(`${currentPlayer.getName()}'s turn.`)
+        vc.controlGameDisplay(`${currentPlayer.getName()}'s turn.`)
         if(currentPlayer.isComputer()){
             computerMove();
         }
@@ -279,22 +281,22 @@ const gameMaster = (()=>{
         let pos = GameBoard.getPossibleMoves();
         if(pos.includes(ix)&& gameOn){
             GameBoard.updateGameState(ix,currentPlayer.getMarker());
-            viewController.renderBoard();
+            vc.renderBoard();
             if(GameBoard.checkWin('X')||GameBoard.checkWin('O')){
-                viewController.controlGameDisplay(`${currentPlayer.getName()} Wins.`);
-                viewController.updateScores(currentPlayer);
-                viewController.controlScoreBoard(player1,player2);
+                vc.controlGameDisplay(`${currentPlayer.getName()} Wins.`);
+                vc.updateScores(currentPlayer);
+                vc.controlScoreBoard(player1,player2);
                 gameOn = false;
                 return;
             }else if(GameBoard.checkDraw()){
-                viewController.controlGameDisplay('Draw.');
-                viewController.updateScores(currentPlayer,true);
-                viewController.controlScoreBoard(player1,player2);
+                vc.controlGameDisplay('Draw.');
+                vc.updateScores(currentPlayer,true);
+                vc.controlScoreBoard(player1,player2);
                 gameOn = false;
                 return;
             }
             currentPlayer = currentPlayer === player1 ? player2:player1;
-            viewController.controlGameDisplay(`${currentPlayer.getName()}'s turn.`);
+            vc.controlGameDisplay(`${currentPlayer.getName()}'s turn.`);
             if(currentPlayer.isComputer()){
                 computerMove();
             }
@@ -309,28 +311,42 @@ const formMaster = (()=>{
     const startBtn = document.querySelector('#start');
     const inputs = document.querySelectorAll('.inputs')
     
-    const validateForm = () => true;
+    const validateForm = function(p1,p2){
+        let validated = true;
+        if(p1.value === ''){
+            p1.style.backgroundColor = 'red'
+            validated = false;
+        }else{
+            p1.style.backgroundColor = 'transparent'
+        }
+        if(p2.value === ''){
+            p2.style.backgroundColor = 'red'
+            validated = false;
+        }else{
+            p2.style.backgroundColor = 'transparent'
+        }
+        return validated;
+    }
     const handleSubmit = function(e){
-        let p1 = inputs[0].value;
-        let p2 = inputs[2].value; 
+        let p1 = inputs[0];
+        let p2 = inputs[2]; 
         let p1Mode = inputs[1].value 
         let p2Mode = inputs[3].value 
 
         let player1;
         let player2;
         if(p1Mode === 'human'){
-            player1 = PlayerFactory(p1, 'X'); 
+            player1 = PlayerFactory(p1.value, 'X'); 
         }else{
-            player1 = ComputerFactory(p1, 'X', Number(p1Mode));
+            player1 = ComputerFactory(p1.value, 'X', Number(p1Mode));
         }
         if(p2Mode === 'human'){
-            player2 = PlayerFactory(p2, 'O'); 
+            player2 = PlayerFactory(p2.value, 'O'); 
         }else{
-            player2 = ComputerFactory(p2, 'O', Number(p2Mode));
+            player2 = ComputerFactory(p2.value, 'O', Number(p2Mode));
         }
-        
-        if(validateForm()){
-            viewController.revealBoard();
+        if(validateForm(p1,p2)){
+            viewController.hideForm();
             gameMaster.init(player1, player2);
         }
     }
