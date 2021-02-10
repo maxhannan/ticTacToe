@@ -73,7 +73,7 @@ select{
     display :flex;
     align-items: center;
     justify-content: center;
-    background-color: lightsteelblue;
+    /* background-color: lightsteelblue; */
 }
 .container{
     height: 60vh;
@@ -137,7 +137,7 @@ p{
     }
     .scoreboard{
         font-size: 18px;
-        width: 300px;
+        width: 80vw;
         
     }
     .display{
