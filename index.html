@@ -11,20 +11,32 @@
     </head>
     <body>
         <div class = 'menu'>
-            <label for="player1">Player 1</label>
-            <input class = 'inputs' data-ix = '0' id = 'player1' type = 'text' placeholder="Name"/>
-            <label for="player2">Player 2</label>
-            <input class = 'inputs' data-ix = '1' id = 'player2' type = 'text' placeholder="Name"/>
-            <select class = 'inputs' id = 'aiSelect'>
+            <label for="player1">Player X</label>
+            <input class = 'inputs' id = 'player1' type = 'text' placeholder="Name"/>
+            <select class = 'inputs' id = 'ai1Select'>
+                <option value = "human">Human</option>
+                <option value="0">AI: Easy</option>
+                <option value="1">AI: Medium </option>
+                <option value="2">AI: Hard </option>
+                <option value="3">AI: Impossible (minMax) </option>
+            </select>
+            <label for="player2">Player O</label>
+            <input class = 'inputs' id = 'player2' type = 'text' placeholder="Name"/>
+            <select class = 'inputs' id = 'ai2Select'>
                 <!-- <option value="">Player 2 Status</option> -->
-                <option value = "human">Player 2: Human</option>
-                <option value="comp">Player 2: AI </option>
-                
+                <option value = "human">Human</option>
+                <option value="0">AI: Easy</option>
+                <option value="1">AI: Medium </option>
+                <option value="2">AI: Hard </option>
+                <option value="3">AI: Impossible (minMax) </option>
             </select>
            
             <button id = 'start'>start</button>
         </div>
         <div class = 'gameBoard'>
+        <div class = 'scoreboard'>
+
+        </div>
         <div class = 'display'>
         
         </div>
@@ -44,6 +56,6 @@
         <button class = 'btns' id = 'reset'>New Round</button>
     </div>
     </div>
-        <script src="assets/scriptsrefactor.js" async defer></script>
+        <script src="assets/scripts.js" async defer></script>
     </body>
 </html>

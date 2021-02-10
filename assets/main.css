@@ -17,7 +17,7 @@ body{
     font-size: 30px;
     justify-content: center;
     align-items: center;
-    transition: 1s all;
+    transition: .7s all;
     visibility: visible;
     opacity: 1;
     position: absolute;
@@ -48,7 +48,7 @@ select{
     height: 40px;
 }
 #start:hover{
-    background: lightgreen;
+    background: lightgray;
 }
 .gameBoard{
     display: flex;
@@ -58,20 +58,26 @@ select{
     height: 100vh;
     font-family: 'Chivo';
     overflow: hidden;
-    transition: 2s all;
+    transition: 1.5s all;
     visibility: hidden;
     opacity: 0;
     position: absolute;
+}
+.scoreboard{
+    font-size: 30px;
 }
 .display{
     height:100px;
     width: 100%;
     font-size: 60px;
-    text-align: center;
+    display :flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightsteelblue;
 }
 .container{
-    height: 500px;
-    width: 500px;
+    height: 60vh;
+    width: 60vh;
     background-color: black;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -83,14 +89,14 @@ select{
 
     margin:2px;
     transition: .2s all;
-    font-size: 80px;
+    font-size: 10vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
 }
 .box:hover{
-    background-color: lightgreen;
+    background-color: lightsteelblue;
 }
 p{
     animation: expand 2s;
@@ -121,5 +127,19 @@ p{
 
 }
 .btns:hover{
-    background-color: lightcoral;
+    width: 200px;
 }
+
+@media only screen and (max-width: 600px) {
+    .container {
+      width: 80vw;
+      height: 80vw;
+    }
+    .scoreboard{
+        font-size: 18px;
+        width: 80vw;
+    }
+    .display{
+        font-size: 30px;
+    }
+  }
