@@ -138,6 +138,7 @@ const ComputerFactory = (name, marker,level)=>{
     const lvl = level;
     const human = ai === 'X' ? 'O':'X';
     const isComputer = () => true;
+    const getLevel = () => level;
     function getRandomArbitrary(min=0, max=9) {
         return Math.floor(Math.random() * (max - min) + min);
     }
@@ -222,7 +223,8 @@ const ComputerFactory = (name, marker,level)=>{
         {
         makeDumbMove,
         makeSmartMove,
-        isComputer
+        isComputer,
+        getLevel
     })
 };
 
